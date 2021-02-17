@@ -1,17 +1,17 @@
-const uriServer = 'http://localhost:3333';
+const uriServer = window.location.href;
 
 let transactions = [];
 
 const StorageTransactions = {
   async get() {
-    const response = await fetch(`${uriServer}/transactions`);
+    const response = await fetch(`${uriServer}transactions`);
 
     const transations = await response.json();
 
     return transations || [];
   },
   async add(transaction) {
-    await fetch(`${uriServer}/transactions`, {
+    await fetch(`${uriServer}transactions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ const StorageTransactions = {
     App.reload();
   },
   async remove(idTransaction) {
-    await fetch(`${uriServer}/transactions/${idTransaction}`, {
+    await fetch(`${uriServer}transactions/${idTransaction}`, {
       method: 'DELETE',
     });
 
